@@ -14,13 +14,13 @@ class servolock:
 	def lock(self,channel):
         	self.time_now = time.time()
 		if(self.time_now - self.time_stamp) >= 0.3:	
-			print "The Door is Locked!\n"
+			print "The Button for Lock is Pressed!\n"
 			os.system("python door_lock.py L")
 		self.time_stamp = self.time_now
 	def unlock(self,channel):
 		self.time_now = time.time()
 		if(self.time_now - self.time_stamp) >= 0.3:
-			print "The Door is Unlocked!\n"
+			print "The Button for Unlock is Pressed!\n"
 			os.system("python door_lock.py U")
 		self.time_stamp = self.time_now
 	def lockit(self):
