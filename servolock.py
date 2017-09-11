@@ -24,10 +24,10 @@ class servolock:
 			os.system("python door_lock.py U")
 		self.time_stamp = self.time_now
 	def lockit(self):
-		print "The Door is Locked!\n"
+		print "Entering from App or Reader for Locking!\n"
 		os.system("python door_lock.py L")
 	def unlockit(self):
-		print "Entering from App or Reader:The Door is Unlocked!\n"
+		print "Entering from App or Reader for Unlocking!\n"
 		os.system("python door_lock.py U")
 
 
