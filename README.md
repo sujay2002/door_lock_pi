@@ -6,5 +6,10 @@ For any Bugs Please contact author on Email : sujay2002@gmail.com
 1. Able to Read RFID cards for Authentication and will open and Close the Door
 2. Able to Read Button inputs for Opening and Closing the Door
 3. Has a REST API interface available to be able to close and open the Door.
+4. REST API endpoint uses Basic HTTP Authentication Mechanism with a Valid Username and Password
 
 Clone the code from git and copy all the files in your raspberry pi under /home/pi
+
+
+The Layout of the Pi and Circuit can be found on the Below Mentioned Link:
+
