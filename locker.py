@@ -1,7 +1,9 @@
 import requests
 import threading
 import time
-from flask import Flask
+from flask import Flask,g
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
 import sys
 sys.path.insert(0, "/home/pi/pi-rc522/ChipReader")
 
@@ -16,6 +18,11 @@ import time
 import os
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
+users = {
+	"admin":generate_password_hash("password"),
+	"guest":generate_password_hash("guest123")
+}
 srv = servolock()
 @app.before_first_request
 def activate_job():
@@ -68,17 +75,29 @@ def activate_job():
     thread = threading.Thread(target=run_job)
     thread.start()
 
+@auth.verify_password
+def verify_password(username,password):
+	if username in users:
+		g.user = None
+        	if check_password_hash(users.get(username), password):
+			g.user = username
+			return True
+    	return False
+
 @app.route("/")
+@auth.login_required
 def hello():
-    return "The Door Locker is Ready!!!"
+    return "The Door Locker is Ready!!! %s" % g.user 
 @app.route("/lockme")
+@auth.login_required
 def lockme():
     srv.lockit()
-    return "The App Has Locked The Door!"
+    return "The App Has Locked The Door!%s"% g.user
 @app.route("/unlockme")
+@auth.login_required
 def unlockme():
     srv.unlockit() 
-    return "The App has Unlocked The Door!"
+    return "The App has Unlocked The Door!%s" % g.user
 
 def start_runner():
     def start_loop():
@@ -86,7 +105,7 @@ def start_runner():
         while not_started:
             print('In start loop')
             try:
-                r = requests.get('http://127.0.0.1:5000/')
+                r = requests.get('http://admin:password@127.0.0.1:5000/')
                 if r.status_code == 200:
                     print('Server started, quiting start_loop')
                     not_started = False
