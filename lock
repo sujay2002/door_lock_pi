@@ -18,7 +18,7 @@ fi
 #                    override the defaults in /lib/init/init-d-script.
 ### END INIT INFO
 
-# Author: Foo Bar <foobar@baz.org>
+# Author: Sujay Kanungo <sujay2002@gmail.com>
 #
 # Please remove the "Author" lines above and replace them
 # with your own name if you copy and modify this script.
