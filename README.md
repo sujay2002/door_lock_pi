@@ -9,11 +9,11 @@ For any Bugs Please contact author on Email : sujay2002@gmail.com
 4. REST API endpoint uses Basic HTTP Authentication Mechanism with a Valid Username and Password
 
 Steps to Install the Application:
-Dependency : flask,flask_httpauth and pirc522
-Clone the code from git and copy all the files in your raspberry pi under /home/pi
-Give Executable Access to locker.py
-copy the file lock under /etc/init.d and go the folder /etc/init.d
-Execute the command "update-rc.d lock defaults"
+a.Dependency : flask,flask_httpauth and pirc522
+b.Clone the code from git and copy all the files in your raspberry pi under /home/pi
+c.Give Executable Access to locker.py
+d.copy the file lock under /etc/init.d and go the folder /etc/init.d
+e.Execute the command "update-rc.d lock defaults"
 
 Start the program under /home/pi as python locker.py
 Scan the RFID key fobs and Edit the key data in card_data.json
