@@ -20,8 +20,8 @@ import os
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 users = {
-	"admin":generate_password_hash("password"),
-	"guest":generate_password_hash("guest123")
+	"user1":generate_password_hash("password1"),
+	"user2":generate_password_hash("password2")
 }
 srv = servolock()
 @app.before_first_request
