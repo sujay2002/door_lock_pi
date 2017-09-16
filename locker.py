@@ -105,7 +105,7 @@ def start_runner():
         while not_started:
             print('In start loop')
             try:
-                r = requests.get('http://admin:password@127.0.0.1:5000/')
+                r = requests.get('http://user1:password1@127.0.0.1:5000/')
                 if r.status_code == 200:
                     print('Server started, quiting start_loop')
                     not_started = False
