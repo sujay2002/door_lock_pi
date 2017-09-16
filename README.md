@@ -9,11 +9,18 @@ For any Bugs Please contact author on Email : sujay2002@gmail.com
 4. REST API endpoint uses Basic HTTP Authentication Mechanism with a Valid Username and Password
 
 Steps to Install the Application:
+
 a.Dependency : flask,flask_httpauth and pirc522
+
 b.Clone the code from git and copy all the files in your raspberry pi under /home/pi
+
 c.Give Executable Access to locker.py
+
 d.copy the file lock under /etc/init.d and go the folder /etc/init.d
+
 e.Execute the command "update-rc.d lock defaults"
+
+f.use the command line "python door_lock.py L" to Move the Servo to Lock Position for the first time For installation
 
 Start the program under /home/pi as python locker.py
 Scan the RFID key fobs and Edit the key data in card_data.json
