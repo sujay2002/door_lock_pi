@@ -23,7 +23,7 @@ e.Execute the command "update-rc.d lock defaults"
 f.use the command line "python door_lock.py L" to Move the Servo to Lock Position for the first time For installation
 
 Start the program under /home/pi as python locker.py
-Scan the RFID key fobs and Edit the key data in card_data.json
+Scan the RFID key fobs and Edit the key data in card_data.json, Whenever you scan a new key Fob it will print some card data such as [82,101,194,16,220] copy that from the output screen and update the card_data.json dictionary value or add a new value as you see fit.
 Reboot the Pi and the software will start working.
 
 The Layout of the Pi and Circuit can be found on the Below Mentioned Link:
