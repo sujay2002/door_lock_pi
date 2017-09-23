@@ -2,6 +2,7 @@ import requests
 import threading
 import time
 from flask import Flask,g
+from flask import jsonify
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
@@ -20,8 +21,8 @@ import os
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 users = {
-	"user1":generate_password_hash("password1"),
-	"user2":generate_password_hash("password2")
+	"admin":generate_password_hash("password"),
+	"guest":generate_password_hash("guest123")
 }
 srv = servolock()
 @app.before_first_request
@@ -87,17 +88,17 @@ def verify_password(username,password):
 @app.route("/")
 @auth.login_required
 def hello():
-    return "The Door Locker is Ready!!! %s" % g.user 
+    return jsonify(message="The Door Locker is Ready!!!",userid = g.user )
 @app.route("/lockme")
 @auth.login_required
 def lockme():
     srv.lockit()
-    return "The App Has Locked The Door!%s"% g.user
+    return jsonify(message="The App Has Locked The Door!",userid = g.user )
 @app.route("/unlockme")
 @auth.login_required
 def unlockme():
     srv.unlockit() 
-    return "The App has Unlocked The Door!%s" % g.user
+    return jsonify(message="The App has Unlocked The Door!",userid =  g.user)
 
 def start_runner():
     def start_loop():
@@ -105,7 +106,7 @@ def start_runner():
         while not_started:
             print('In start loop')
             try:
-                r = requests.get('http://user1:password1@127.0.0.1:5000/')
+                r = requests.get('http://admin:password@127.0.0.1:5000/')
                 if r.status_code == 200:
                     print('Server started, quiting start_loop')
                     not_started = False
